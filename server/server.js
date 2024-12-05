@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const pool = require('./db');
 
 const app = express();
@@ -42,9 +43,13 @@ app.post('/register-student', async (req, res) => {
       return res.status(400).json({ error: 'Student already exists' });
     }
 
+    // Hash the password with bcrypt
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the hashed password into the database
     const newStudent = await pool.query(
       'INSERT INTO students (email, username, password) VALUES ($1, $2, $3) RETURNING *',
-      [email, username, password]
+      [email, username, hashedPassword]
     );
 
     res.status(201).json(newStudent.rows[0]);
@@ -53,6 +58,7 @@ app.post('/register-student', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 app.post('/register-tutor', async (req, res) => {
   const { email, username, password } = req.body;
@@ -67,9 +73,13 @@ app.post('/register-tutor', async (req, res) => {
       return res.status(400).json({ error: 'Tutor already exists' });
     }
 
+    // Hash the password with bcrypt
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the hashed password into the database
     const newTutor = await pool.query(
       'INSERT INTO tutors (email, username, password) VALUES ($1, $2, $3) RETURNING *',
-      [email, username, password]
+      [email, username, hashedPassword]
     );
 
     res.status(201).json(newTutor.rows[0]);
