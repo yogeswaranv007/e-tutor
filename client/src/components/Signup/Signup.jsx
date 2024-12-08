@@ -87,19 +87,19 @@ function Signup() {
   };
 
   return (
-    <div className="logsign-container">
-      <form className="logsign-form" onSubmit={handleSubmit}>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div className="tutor_logo">
           <img src={GraduationCap} alt="E-tutor logo" />
           <span>E-Tutor</span>
         </div>
-        <div className="input-bg">
+        <div className="signup-input-bg">
           <label htmlFor="email">Email</label>
-          <div className="input-container">
-            <img src={MailIcon} alt="Mail Icon" className="input-icon" />
+          <div className="signup-input-container">
+            <img src={MailIcon} alt="Mail Icon" className="signup-input-icon" />
             <input
               type="email"
-              className="logsign-input"
+              className="signup-input"
               id="email"
               placeholder="Enter your email"
               value={email}
@@ -108,11 +108,11 @@ function Signup() {
           </div>
 
           <label htmlFor="username">Username</label>
-          <div className="input-container">
-            <img src={UserIcon} alt="User Icon" className="input-icon" />
+          <div className="signup-input-container">
+            <img src={UserIcon} alt="User Icon" className="signup-input-icon" />
             <input
               type="text"
-              className={`logsign-input ${usernameAvailable ? '' : 'username-taken'}`}
+              className={`signup-input ${usernameAvailable ? '' : 'username-taken'}`}
               id="username"
               placeholder="Enter your Username"
               value={username}
@@ -125,11 +125,11 @@ function Signup() {
           {!usernameAvailable && <p className="username-taken-msg">Username already exists</p>}
 
           <label htmlFor="password">Password</label>
-          <div className="input-container">
-            <img src={LockIcon} alt="Lock Icon" className="input-icon" />
+          <div className="signup-input-container">
+            <img src={LockIcon} alt="Lock Icon" className="signup-input-icon" />
             <input
               type="password"
-              className="logsign-input"
+              className="signup-input"
               id="password"
               placeholder="Enter your Password"
               value={password}
@@ -138,7 +138,7 @@ function Signup() {
           </div>
           {error && <div style={{ color: 'red', fontSize: '16px', height: '15px' }}>{error}</div>}
 
-          <div className="category-radio">
+          <div className="signup-category-radio">
             <div>
               <label htmlFor="student">Student</label>
               <input
@@ -164,9 +164,9 @@ function Signup() {
           </div>
         </div>
 
-        <button type="submit" className="logsign-button">Sign Up</button>
+        <button type="submit" className="signup-button">Sign Up</button>
         <p className="or">or</p>
-        <button type="button" className="logsign-google-button">
+        <button type="button" className="signup-google-button">
           <img src={GoogleIcon} alt="Google Icon" className="google-icon" /> Sign Up with Google
         </button>
       </form>
